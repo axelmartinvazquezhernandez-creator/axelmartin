@@ -2,87 +2,410 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>F1 Historia Completa</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórmula 1 - Historia, Pilotos y Clasificaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #ff0000;
+            color: #000000;
+            min-height: 100vh;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        header img {
+            width: 150px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            border: none;
+            background: #000000;
+            color: #ffffff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .nav-buttons button:hover {
+            background: #222222;
+        }
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+        h2 {
+            color: #000000;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 10px;
+        }
+        p, li {
+            color: #000000;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #000000;
+        }
+        th {
+            background-color: #eeeeee;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .piloto {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .piloto img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #000000;
+        }
+        .car-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .car-images img {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 12px;
+        }
+        .team-card {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #000000;
+            border-radius: 12px;
+            background: #f7f7f7;
+        }
+        .team-logo {
+            max-width: 100px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .team-car {
+            width: 100%;
+            border-radius: 12px;
+        }
+        ul {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        @media (max-width: 720px) {
+            .team-card {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script>
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
 </head>
 <body>
-
-<header>
-    <h1>FÓRMULA 1</h1>
-    <p>Historia y campeones desde 1950</p>
-</header>
-
-<nav>
-    <a href="#historia">Historia</a>
-    <a href="#pilotos">Pilotos</a>
-    <a href="#campeones">Campeones</a>
-</nav>
-
-<section id="historia">
-    <h2>Historia de la F1</h2>
-    <p>
-        La Fórmula 1 inició en 1950 y es la máxima categoría del automovilismo.
-        A lo largo de los años ha tenido pilotos legendarios y momentos históricos.
-    </p>
-</section>
-
-<section id="pilotos">
-    <h2>Mejores pilotos de la historia</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <img src="https://cdn-1.motorsport.com/images/mgl/0ZRr2qE0/s8/f1-abu-dhabi-gp-2023-max-verstappen-red-bull-racing.jpg">
-            <h3>Max Verstappen</h3>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/FIA_Formula_1_Logo.svg" alt="Logo Fórmula 1">
+        <h1>Fórmula 1</h1>
+        <div class="nav-buttons">
+            <button onclick="scrollToSection('historia')">Historia</button>
+            <button onclick="scrollToSection('mejores-pilotos')">Mejores Pilotos</button>
+            <button onclick="scrollToSection('pilotos-actuales')">Pilotos</button>
+            <button onclick="scrollToSection('equipos')">Equipos</button>
+            <button onclick="scrollToSection('calendario')">Calendario</button>
+            <button onclick="scrollToSection('noticias')">Noticias</button>
         </div>
+    </header>
 
-        <div class="card">
-            <img src="https://cdn-1.motorsport.com/images/mgl/6D1WZqEY/s8/lewis-hamilton-mercedes.jpg">
-            <h3>Lewis Hamilton</h3>
+    <section id="historia">
+        <h2>Historia</h2>
+        <p>La Fórmula 1 es la categoría más alta del automovilismo internacional sancionada por la Federación Internacional del Automóvil (FIA). Comenzó en 1950 con el primer Gran Premio en Silverstone, Reino Unido. Desde entonces, ha evolucionado para convertirse en el deporte de motor más prestigioso del mundo, con carreras en circuitos icónicos alrededor del globo. Los pilotos compiten por el Campeonato Mundial de Pilotos y el Campeonato Mundial de Constructores, utilizando tecnología de vanguardia y estrategias complejas.</p>
+    </section>
+
+    <section id="mejores-pilotos">
+        <h2>Mejores Pilotos de la Historia</h2>
+        <table>
+            <tr>
+                <th>Piloto</th>
+                <th>Campeonatos Ganados</th>
+                <th>Equipos</th>
+            </tr>
+            <tr>
+                <td>Michael Schumacher</td>
+                <td>7</td>
+                <td>Benetton, Ferrari</td>
+            </tr>
+            <tr>
+                <td>Lewis Hamilton</td>
+                <td>7</td>
+                <td>McLaren, Mercedes</td>
+            </tr>
+            <tr>
+                <td>Ayrton Senna</td>
+                <td>3</td>
+                <td>Lotus, McLaren, Williams</td>
+            </tr>
+            <tr>
+                <td>Alain Prost</td>
+                <td>4</td>
+                <td>McLaren, Williams</td>
+            </tr>
+            <tr>
+                <td>Sebastian Vettel</td>
+                <td>4</td>
+                <td>Red Bull, Ferrari</td>
+            </tr>
+            <tr>
+                <td>Juan Manuel Fangio</td>
+                <td>5</td>
+                <td>Alfa Romeo, Mercedes, Ferrari</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="clasificacion">
+        <h2>Tabla Clasificación Pilotos 2026</h2>
+        <table>
+            <tr>
+                <th>Posición</th>
+                <th>Piloto</th>
+                <th>País</th>
+                <th>Equipo</th>
+                <th>Puntos</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Andrea Antonelli</td>
+                <td>ITA</td>
+                <td>Mercedes</td>
+                <td>72</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>George Russell</td>
+                <td>GBR</td>
+                <td>Mercedes</td>
+                <td>63</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Charles Leclerc</td>
+                <td>MON</td>
+                <td>Ferrari</td>
+                <td>49</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Lewis Hamilton</td>
+                <td>GBR</td>
+                <td>Ferrari</td>
+                <td>41</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Lando Norris</td>
+                <td>GBR</td>
+                <td>McLaren</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Oscar Piastri</td>
+                <td>AUS</td>
+                <td>McLaren</td>
+                <td>21</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Oliver Bearman</td>
+                <td>GBR</td>
+                <td>Haas F1 Team</td>
+                <td>17</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Pierre Gasly</td>
+                <td>FRA</td>
+                <td>Alpine</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Max Verstappen</td>
+                <td>NED</td>
+                <td>Red Bull Racing</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Liam Lawson</td>
+                <td>NZL</td>
+                <td>Racing Bulls</td>
+                <td>10</td>
+            </tr>
+            <!-- Add more as needed -->
+        </table>
+    </section>
+
+    <section id="calendario">
+        <h2>Calendario de la Fórmula 1 2026</h2>
+        <table>
+            <tr>
+                <th>Gran Premio</th>
+                <th>País</th>
+                <th>Fecha</th>
+            </tr>
+            <tr>
+                <td>Miami</td>
+                <td>Estados Unidos</td>
+                <td>1-3 de mayo</td>
+            </tr>
+            <tr>
+                <td>Mónaco</td>
+                <td>Mónaco</td>
+                <td>23-25 de mayo</td>
+            </tr>
+            <tr>
+                <td>Silverstone</td>
+                <td>Reino Unido</td>
+                <td>4-6 de julio</td>
+            </tr>
+            <tr>
+                <td>Hungaroring</td>
+                <td>Hungría</td>
+                <td>18-20 de julio</td>
+            </tr>
+            <tr>
+                <td>Monza</td>
+                <td>Italia</td>
+                <td>5-7 de septiembre</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="pilotos-actuales">
+        <h2>Pilotos Actuales</h2>
+        <div class="piloto">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/George_Russell_2023.jpg/220px-George_Russell_2023.jpg" alt="George Russell">
+            <p><strong>George Russell</strong> - Mercedes</p>
         </div>
-
-        <div class="card">
-            <img src="https://cdn-1.motorsport.com/images/mgl/Y99JQRbY/s8/michael-schumacher.jpg">
-            <h3>Michael Schumacher</h3>
+        <div class="piloto">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Charles_Leclerc_2023.jpg/220px-Charles_Leclerc_2023.jpg" alt="Charles Leclerc">
+            <p><strong>Charles Leclerc</strong> - Ferrari</p>
         </div>
-
-        <div class="card">
-            <img src="https://cdn-1.motorsport.com/images/mgl/2d1eZr6Y/s8/ayrton-senna.jpg">
-            <h3>Ayrton Senna</h3>
+        <div class="piloto">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lewis_Hamilton_2016_Malaysia.jpg/220px-Lewis_Hamilton_2016_Malaysia.jpg" alt="Lewis Hamilton">
+            <p><strong>Lewis Hamilton</strong> - Ferrari</p>
         </div>
+        <div class="piloto">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Lando_Norris_2023.jpg/220px-Lando_Norris_2023.jpg" alt="Lando Norris">
+            <p><strong>Lando Norris</strong> - McLaren</p>
+        </div>
+        <div class="piloto">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Pierre_Gasly_2023.jpg/220px-Pierre_Gasly_2023.jpg" alt="Pierre Gasly">
+            <p><strong>Pierre Gasly</strong> - Alpine</p>
+        </div>
+    </section>
 
-    </div>
-</section>
+    <section id="equipos">
+        <h2>Equipos y Monoplazas Actuales</h2>
+        <div class="team-card">
+            <div>
+                <img class="team-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Mercedes-Benz_Star_Logo.svg/120px-Mercedes-Benz_Star_Logo.svg.png" alt="Mercedes Logo">
+                <h3>Mercedes</h3>
+                <p>Mercedes es uno de los equipos más dominantes de la era híbrida, con un diseño negro y plata moderno.</p>
+            </div>
+            <div>
+                <img class="team-car" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Mercedes_W14.jpg/320px-Mercedes_W14.jpg" alt="Mercedes W14">
+            </div>
+        </div>
+        <div class="team-card">
+            <div>
+                <img class="team-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Scuderia_Ferrari_Logo.svg/120px-Scuderia_Ferrari_Logo.svg.png" alt="Ferrari Logo">
+                <h3>Ferrari</h3>
+                <p>Ferrari tiene su característico color rojo y sigue siendo un símbolo de velocidad y diseño italiano.</p>
+            </div>
+            <div>
+                <img class="team-car" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ferrari_SF-23.jpg/320px-Ferrari_SF-23.jpg" alt="Ferrari SF-23">
+            </div>
+        </div>
+        <div class="team-card">
+            <div>
+                <img class="team-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Red_Bull_Racing_logo.svg/120px-Red_Bull_Racing_logo.svg.png" alt="Red Bull Racing Logo">
+                <h3>Red Bull Racing</h3>
+                <p>Red Bull Racing combina rendimiento y aerodinámica en un diseño azul oscuro con detalles llamativos.</p>
+            </div>
+            <div>
+                <img class="team-car" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Red_Bull_RB19.jpg/320px-Red_Bull_RB19.jpg" alt="Red Bull RB19">
+            </div>
+        </div>
+        <div class="team-card">
+            <div>
+                <img class="team-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7c/McLaren_Logo_2017.svg/120px-McLaren_Logo_2017.svg.png" alt="McLaren Logo">
+                <h3>McLaren</h3>
+                <p>McLaren destaca con su diseño naranja papaya y su ambición por estar en la cima de cada carrera.</p>
+            </div>
+            <div>
+                <img class="team-car" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/McLaren_MCL60.jpg/320px-McLaren_MCL60.jpg" alt="McLaren MCL60">
+            </div>
+        </div>
+    </section>
 
-<section id="campeones">
-    <h2>Campeones del mundo</h2>
+    <section id="noticias">
+        <h2>Últimas Noticias</h2>
+        <ul>
+            <li>Red Bull anuncia mejoras en el RB20 para las próximas carreras.</li>
+            <li>Ferrari presenta nuevos ajustes aerodinámicos para Monza.</li>
+            <li>Mercedes confirma su alineación de pilotos para la temporada 2026.</li>
+        </ul>
+    </section>
 
-    <table>
-        <tr>
-            <th>Año</th>
-            <th>Campeón</th>
-        </tr>
-
-        <tr><td>1950</td><td>Juan Manuel Fangio</td></tr>
-        <tr><td>1965</td><td>Jim Clark</td></tr>
-        <tr><td>1976</td><td>James Hunt</td></tr>
-        <tr><td>1988</td><td>Ayrton Senna</td></tr>
-        <tr><td>1994</td><td>Michael Schumacher</td></tr>
-        <tr><td>2000</td><td>Michael Schumacher</td></tr>
-        <tr><td>2005</td><td>Fernando Alonso</td></tr>
-        <tr><td>2008</td><td>Lewis Hamilton</td></tr>
-        <tr><td>2013</td><td>Sebastian Vettel</td></tr>
-        <tr><td>2020</td><td>Lewis Hamilton</td></tr>
-        <tr><td>2021</td><td>Max Verstappen</td></tr>
-        <tr><td>2022</td><td>Max Verstappen</td></tr>
-        <tr><td>2023</td><td>Max Verstappen</td></tr>
-
-    </table>
-</section>
-
-<footer>
-    <p>© 2026 F1 Historia</p>
-</footer>
-
+    <section id="autos">
+        <h2>Imágenes de Autos</h2>
+        <div class="car-images">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Mercedes_W14.jpg" alt="Mercedes W14">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Ferrari_SF-23.jpg" alt="Ferrari SF-23">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Red_Bull_RB19.jpg" alt="Red Bull RB19">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/McLaren_MCL60.jpg" alt="McLaren MCL60">
+        </div>
+    </section>
 </body>
 </html>
