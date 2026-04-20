@@ -1,0 +1,86 @@
+/* Estilos para el fondo con pisadas de neumáticos y coche de Fórmula 1 */
+
+/* Fondo principal: simula una carretera */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, #4a4a4a 0%, #2c2c2c 50%, #1a1a1a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pisadas de neumáticos: líneas diagonales repetidas */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.1) 10px,
+        rgba(255, 255, 255, 0.1) 20px
+    );
+    background-size: 40px 40px;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+/* Coche de Fórmula 1: un elemento animado */
+.car {
+    position: absolute;
+    bottom: 20%;
+    left: -200px; /* Empieza fuera de la pantalla */
+    width: 150px;
+    height: 50px;
+    background: linear-gradient(to right, #ff0000 0%, #ffffff 20%, #ff0000 40%, #ffffff 60%, #ff0000 80%, #ffffff 100%);
+    border-radius: 10px 20px 10px 20px;
+    z-index: 2;
+    animation: drive 5s linear infinite;
+}
+
+/* Ruedas del coche */
+.car::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border-radius: 50%;
+}
+
+.car::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border-radius: 50%;
+}
+
+/* Animación del coche pasando */
+@keyframes drive {
+    0% {
+        left: -200px;
+    }
+    100% {
+        left: calc(100% + 200px);
+    }
+}
+
+/* Contenido principal encima del fondo */
+.content {
+    position: relative;
+    z-index: 3;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+}
